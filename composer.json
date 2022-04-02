@@ -1,0 +1,35 @@
+{
+    "name": "ohffs/simple-api-key-middleware",
+    "description": "Very basic API key middleware for Laravel",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ohffs\\SimpleApiKeyMiddleware\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ohffs\\SimpleApiKeyMiddleware\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ohffs",
+            "email": "ohffsnotnow@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "^7.1"
+    },
+    "require": {
+        "illuminate/http": "^9.5"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ohffs\\SimpleApiKeyMiddleware\\ApiKeyProvider"
+            ]
+        }
+    }
+}
