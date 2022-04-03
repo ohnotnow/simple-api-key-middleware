@@ -3,8 +3,8 @@
 namespace Ohffs\SimpleApiKeyMiddleware;
 
 use Closure;
-use Ohffs\SimpleApiKeyMiddleware\ApiKey;
 use Illuminate\Http\Response;
+use Ohffs\SimpleApiKeyMiddleware\SimpleApiKey;
 
 class ApiKeyMiddleware
 {
@@ -21,7 +21,7 @@ class ApiKeyMiddleware
             abort(Response::HTTP_UNAUTHORIZED);
         }
 
-        if (! ApiKey::checkValidToken($request->bearerToken())) {
+        if (! SimpleApiKey::checkValidToken($request->bearerToken())) {
             abort(Response::HTTP_UNAUTHORIZED);
         }
 

@@ -5,7 +5,7 @@ namespace Ohffs\SimpleApiKeyMiddleware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ApiKey extends Model
+class SimpleApiKey extends Model
 {
     use HasFactory;
 
@@ -78,14 +78,14 @@ class ApiKey extends Model
 
     protected function cacheTokenLookupResult($tokenId, bool $result): void
     {
-        if (config('api_keys.cache_enabled')) {
-            cache()->put("token_cache_{$tokenId}", $result, config('api_keys.cache_ttl_seconds', 60));
+        if (config('simple_api_keys.cache_enabled')) {
+            cache()->put("token_cache_{$tokenId}", $result, config('simple_api_keys.cache_ttl_seconds', 60));
         }
     }
 
     protected function cacheExistsForToken($tokenId): bool
     {
-        if (config('api_keys.cache_enabled')) {
+        if (config('simple_api_keys.cache_enabled')) {
             return cache()->has("token_cache_{$tokenId}");
         }
 
@@ -94,7 +94,7 @@ class ApiKey extends Model
 
     protected function getCachedTokenResult($tokenId): bool
     {
-        if (config('api_keys.cache_enabled')) {
+        if (config('simple_api_keys.cache_enabled')) {
             return cache()->get("token_cache_{$tokenId}");
         }
 
@@ -104,7 +104,7 @@ class ApiKey extends Model
     public static function generate(?string $description = null, ?int $length = null): self
     {
         $key = new self();
-        $plaintextToken = $key->makeRandomString(intval($length ?? config('api_keys.token_length')) / 2);
+        $plaintextToken = $key->makeRandomString(intval($length ?? config('simple_api_keys.token_length')) / 2);
         $key->token = encrypt($plaintextToken);
         $key->description = $description;
         $key->save();

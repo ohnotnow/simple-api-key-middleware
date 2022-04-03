@@ -28,7 +28,7 @@ class ApiKeyProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/migrations');
 
         $this->publishes([
-            __DIR__.'/config/api_keys.php' => config_path('api_keys.php'),
+            __DIR__.'/config/simple_api_keys.php' => config_path('simple_api_keys.php'),
         ]);
 
         if ($this->app->runningInConsole()) {

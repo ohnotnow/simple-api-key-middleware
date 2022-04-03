@@ -12,7 +12,7 @@ return new class () extends Migration {
      */
     public function up()
     {
-        Schema::create('api_keys', function (Blueprint $table) {
+        Schema::create('simple_api_keys', function (Blueprint $table) {
             $table->id();
             $table->string('token');
             $table->string('description')->nullable();

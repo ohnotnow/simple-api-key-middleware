@@ -3,7 +3,7 @@
 namespace Ohffs\SimpleApiKeyMiddleware\Commands;
 
 use Illuminate\Console\Command;
-use Ohffs\SimpleApiKeyMiddleware\ApiKey;
+use Ohffs\SimpleApiKeyMiddleware\SimpleApiKey;
 
 class RemoveApiKey extends Command
 {
@@ -12,7 +12,7 @@ class RemoveApiKey extends Command
      *
      * @var string
      */
-    protected $signature = "api-key:remove {token : Eg, 14-af3548anp48294yaer93}";
+    protected $signature = "simple-api-key:remove {token : Eg, 14-af3548anp48294yaer93}";
 
     /**
      * The console command description.
@@ -38,7 +38,7 @@ class RemoveApiKey extends Command
      */
     public function handle()
     {
-        $result = ApiKey::remove($this->argument('token'));
+        $result = SimpleApiKey::remove($this->argument('token'));
 
         if (! $result) {
             $this->error('The token was not found in the database.');

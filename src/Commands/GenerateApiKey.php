@@ -3,7 +3,7 @@
 namespace Ohffs\SimpleApiKeyMiddleware\Commands;
 
 use Illuminate\Console\Command;
-use Ohffs\SimpleApiKeyMiddleware\ApiKey;
+use Ohffs\SimpleApiKeyMiddleware\SimpleApiKey;
 
 class GenerateApiKey extends Command
 {
@@ -12,7 +12,7 @@ class GenerateApiKey extends Command
      *
      * @var string
      */
-    protected $signature = 'api-key:generate {description}';
+    protected $signature = 'simple-api-key:generate {description}';
 
     /**
      * The console command description.
@@ -38,7 +38,7 @@ class GenerateApiKey extends Command
      */
     public function handle()
     {
-        $key = ApiKey::generate($this->argument('description'));
+        $key = SimpleApiKey::generate($this->argument('description'));
 
         $this->info("The new api key is :");
         $this->info($key->plaintext_token);
